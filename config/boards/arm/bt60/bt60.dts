@@ -233,3 +233,31 @@
 	                   LED_COLOR_ID_BLUE>;
 	};
 };
+/ {
+    chosen {
+        zmk,underglow = &underglow;
+    };
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+underglow: ws2812 {
+    compatible = "worldsemi,ws2812";
+    label = "BT60_RGB_UNDERGLOW";
+
+    /* RGB DATA PIN */
+    gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+
+    /* Anzahl LEDs */
+    chain-length = <12>;
+
+    /* Farbreihenfolge (BT60 korrekt) */
+    color-mapping = <LED_COLOR_ID_GREEN
+                     LED_COLOR_ID_RED
+                     LED_COLOR_ID_BLUE>;
+
+    /* ZMK Optionen */
+    status = "okay";
+};
